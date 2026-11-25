@@ -82,12 +82,20 @@ export default function ServiceCard({ service, active, flipped, onActivate }) {
         </div>
       </div>
 
-      {/* Back — the opened page */}
+      {/* Back — click the scope area to return; the booking link remains a separate action. */}
       <div
         className="absolute inset-0 overflow-hidden rounded-[26px] glass-dark p-6 text-white backface-hidden md:p-7"
         style={{
           transform: "rotateY(180deg)",
           pointerEvents: isOpen ? "auto" : "none",
+          cursor: "pointer",
+        }}
+        onClick={(e) => {
+          if (e.target.closest("a, button")) return;
+          onActivate();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") onActivate();
         }}
       >
         <div className="flex h-full flex-col">
@@ -101,10 +109,11 @@ export default function ServiceCard({ service, active, flipped, onActivate }) {
                 e.stopPropagation();
                 onActivate();
               }}
-              aria-label="Close"
-              className="grid h-7 w-7 place-items-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-white/60 hover:text-white"
+              aria-label="Flip back to service overview"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-3 py-1.5 text-[10px] font-mono uppercase tracking-[0.12em] text-white/80 transition-colors hover:border-white/60 hover:text-white"
             >
               <X className="h-3.5 w-3.5" />
+              Back
             </button>
           </div>
 
