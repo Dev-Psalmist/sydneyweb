@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import base44 from "@base44/vite-plugin";
-import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import { nitro } from "nitro/vite";
 
 // Every runtime dependency is bundled at startup, for the browser and the SSR worker: one first imported
 // mid-session makes Vite re-bundle, and a page rendered meanwhile on the server loads a second React.
@@ -40,9 +40,8 @@ export default defineConfig({
       analyticsTracker: true,
       visualEditAgent: true,
     }),
-    // No inspector: a restarted dev server would race the old one for port 9229 and crash.
-    cloudflare({ viteEnvironment: { name: "ssr" }, inspectorPort: false }),
     tanstackStart({ srcDirectory: "src" }),
+    nitro(),
     react(),
   ],
 });
