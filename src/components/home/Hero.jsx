@@ -81,10 +81,10 @@ export default function Hero() {
             <div className="mt-6 flex flex-wrap gap-1.5">
               {AGENCIES.map((agency) => (
                 <span
-                  key={agency}
+                  key={agency.name}
                   className="rounded-full border border-ink/10 bg-white/55 px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.1em] text-slate"
                 >
-                  {agency}
+                  {agency.name}
                 </span>
               ))}
             </div>
