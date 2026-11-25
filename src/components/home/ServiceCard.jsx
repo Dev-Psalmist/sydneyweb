@@ -24,7 +24,10 @@ export default function ServiceCard({ service, active, flipped, onActivate }) {
       style={{ transform: isOpen ? "rotateY(180deg)" : "rotateY(0deg)" }}
     >
       {/* Front — the sealed file */}
-      <div className="absolute inset-0 overflow-hidden rounded-[26px] glass p-6 backface-hidden md:p-7">
+      <div
+        className="absolute inset-0 overflow-hidden rounded-[26px] glass p-6 backface-hidden md:p-7"
+        style={{ pointerEvents: isOpen ? "none" : "auto" }}
+      >
         <button
           type="button"
           onClick={(e) => {
@@ -82,7 +85,10 @@ export default function ServiceCard({ service, active, flipped, onActivate }) {
       {/* Back — the opened page */}
       <div
         className="absolute inset-0 overflow-hidden rounded-[26px] glass-dark p-6 text-white backface-hidden md:p-7"
-        style={{ transform: "rotateY(180deg)" }}
+        style={{
+          transform: "rotateY(180deg)",
+          pointerEvents: isOpen ? "auto" : "none",
+        }}
       >
         <div className="flex h-full flex-col">
           <div className="flex items-start justify-between">
