@@ -59,7 +59,6 @@ export default function ServiceDeck() {
           return (
             <div
               key={service.id}
-              onClick={() => handleActivate(i)}
               className="absolute left-1/2 top-1/2 w-[min(80vw,360px)] transition-all duration-700 [transition-timing-function:cubic-bezier(.2,.8,.2,1)] md:w-[min(46vw,400px)]"
               style={{
                 transform: `translate(-50%, -50%) translateX(${offset * 54}%) translateZ(${
@@ -68,7 +67,7 @@ export default function ServiceDeck() {
                 opacity: visible ? (abs === 0 ? 1 : 0.4) : 0,
                 zIndex: 30 - abs,
                 pointerEvents: visible ? "auto" : "none",
-                cursor: abs === 0 ? "pointer" : "pointer",
+                cursor: "pointer",
               }}
               aria-hidden={!visible}
             >
