@@ -1,6 +1,7 @@
 export const SERVICES = [
   {
     id: "cac",
+    logo: "https://www.cac.gov.ng/logo.svg",
     name: "CAC Registration",
     seal: "CAC",
     kicker: "Corporate Affairs Commission",
@@ -17,6 +18,7 @@ export const SERVICES = [
   },
   {
     id: "pencom",
+    logo: "https://global.ariseplay.com/amg/www.thisdaylive.com/uploads/PenCom.jpg",
     name: "PENCOM Compliance",
     seal: "PENCOM",
     kicker: "National Pension Commission",
@@ -33,6 +35,7 @@ export const SERVICES = [
   },
   {
     id: "nsitf",
+    logo: "https://nisi.nsitf.gov.ng/static/nsitf_logo/nsitf_logo.png",
     name: "NSITF",
     seal: "NSITF",
     kicker: "Employee Compensation Scheme",
@@ -49,6 +52,7 @@ export const SERVICES = [
   },
   {
     id: "itf",
+    logo: "https://www.itf.gov.ng/logo_5.jpeg",
     name: "ITF Contribution",
     seal: "ITF",
     kicker: "Industrial Training Fund",
@@ -65,6 +69,7 @@ export const SERVICES = [
   },
   {
     id: "bpp",
+    logo: "https://pcoms.bpp.gov.ng/attachment/cf6a7a35-52b3-4bba-a763-1450d7ac7f19",
     name: "BPP / IRR",
     seal: "BPP",
     kicker: "Bureau of Public Procurement",
@@ -81,6 +86,7 @@ export const SERVICES = [
   },
   {
     id: "scuml",
+    logo: "https://scumlportal.efcc.gov.ng/assets/images/brand/EFCC%20-%20Logo.png",
     name: "SCUML",
     seal: "SCUML",
     kicker: "EFCC · Anti-money laundering",
@@ -97,9 +103,10 @@ export const SERVICES = [
   },
   {
     id: "dpr",
+    logo: "https://elps.nuprc.gov.ng/Content/assets/img/nuprc.png",
     name: "DPR Permits",
     seal: "DPR",
-    kicker: "Petroleum regulatory permits",
+    kicker: "NUPRC · successor to DPR",
     type: "editorial",
     summary:
       "Oil and gas service company registration and petroleum permits, including migration to current regulator requirements.",
@@ -113,6 +120,7 @@ export const SERVICES = [
   },
   {
     id: "nitda",
+    logo: "https://we-gov.org/wp-content/uploads/2019/02/Nitda_Nigeria_Logo_Final.png",
     name: "NITDA",
     seal: "NITDA",
     kicker: "Data protection & IT services",
@@ -129,6 +137,7 @@ export const SERVICES = [
   },
   {
     id: "nepc",
+    logo: "https://pbs.twimg.com/profile_images/1494592071822422068/yBftbSCL.png",
     name: "NEPC Export",
     seal: "NEPC",
     kicker: "Export promotion council",
@@ -145,12 +154,13 @@ export const SERVICES = [
   },
   {
     id: "tax",
+    logo: "https://pbs.twimg.com/profile_images/2006499685482008576/zjEcbGlS.jpg",
     name: "Tax Clearance",
     seal: "TCC",
-    kicker: "FIRS & state revenue",
+    kicker: "Nigeria Revenue Service (NRS)",
     type: "editorial",
     summary:
-      "Tax identification, filings and clearance certificates — the single document most tenders will ask for first.",
+      "Tax identification, filings and Tax Clearance Certificates (TCC) through Nigeria’s current revenue administration framework.",
     items: [
       "TIN registration and verification",
       "Company and personal tax filings",
