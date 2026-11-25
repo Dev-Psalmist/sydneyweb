@@ -1,0 +1,121 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "reference": {
+      "type": "string",
+      "description": "Client-facing booking reference"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "service_id": {
+      "type": "string",
+      "description": "Stable service key from the service catalogue"
+    },
+    "service_name": {
+      "type": "string"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "time_slot": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "In-office",
+        "Virtual",
+        "Phone"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "green"
+      ],
+      "default": "In-office"
+    },
+    "client_type": {
+      "type": "string",
+      "enum": [
+        "New business owner",
+        "Established company",
+        "Government contractor",
+        "Individual"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue",
+        "green",
+        "purple"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Confirmed",
+        "Completed",
+        "Cancelled"
+      ],
+      "enumColors": [
+        "yellow",
+        "green",
+        "blue",
+        "red"
+      ],
+      "default": "Pending"
+    }
+  },
+  "required": [
+    "full_name",
+    "email",
+    "service_name",
+    "preferred_date",
+    "time_slot"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

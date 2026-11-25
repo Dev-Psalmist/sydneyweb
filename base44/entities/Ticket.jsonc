@@ -1,0 +1,106 @@
+{
+  "name": "Ticket",
+  "type": "object",
+  "properties": {
+    "reference": {
+      "type": "string",
+      "description": "Client-facing support reference"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Registration",
+        "Certification",
+        "Tax",
+        "Billing",
+        "Other"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "yellow",
+        "green",
+        "gray"
+      ],
+      "default": "Registration"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Normal",
+        "High",
+        "Urgent"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "yellow",
+        "red"
+      ],
+      "default": "Normal"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "In progress",
+        "Resolved"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue",
+        "green"
+      ],
+      "default": "Open"
+    }
+  },
+  "required": [
+    "reference",
+    "full_name",
+    "email",
+    "subject",
+    "message"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
