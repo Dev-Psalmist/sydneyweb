@@ -1,11 +1,12 @@
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import base44 from "@base44/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { nitro } from "nitro/vite";
 
-// Every runtime dependency is bundled at startup, for the browser and the SSR worker: one first imported
+// Every runtime dependency is bundled at startup, for the browser and the SSR server: one first imported
 // mid-session makes Vite re-bundle, and a page rendered meanwhile on the server loads a second React.
 // Not listed: React itself, the TanStack Start/Router framework (its plugin bundles it) and build-time plugins.
 const NOT_PREBUNDLED = new Set(["react", "react-dom", "@base44/vite-plugin", "@tanstack/react-start", "@tanstack/react-router", "@tanstack/react-router-ssr-query", "tailwindcss-animate"]);
@@ -24,11 +25,21 @@ const BROWSER_PREBUNDLE = [
 ];
 
 export default defineConfig({
+  // Base44's generated error reporter imports cloudflare:workers. On Vercel, map
+  // that one runtime API to a small Node/Vercel-compatible adapter without
+  // changing the Base44-managed source file or affecting Base44 deployments.
+  resolve: process.env.VERCEL === "1"
+    ? {
+        alias: {
+          "cloudflare:workers": fileURLToPath(new URL("./src/lib/vercel-workers-compat.js", import.meta.url)),
+        },
+      }
+    : undefined,
   optimizeDeps: { include: [...PREBUNDLE, ...BROWSER_PREBUNDLE] },
   environments: {
     ssr: {
       optimizeDeps: { include: PREBUNDLE },
-      // Source maps for the Worker only, never served: they let Base44 point an error's stack at the app's own
+      // Source maps for the server only, never served: they let Base44 point an error's stack at the app's own
       // files. Without the sources, so the app's code isn't copied into them. The browser build gets none.
       build: { sourcemap: true, rolldownOptions: { output: { sourcemapExcludeSources: true } } },
     },
