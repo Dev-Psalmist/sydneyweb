@@ -36,10 +36,28 @@ export default function ServiceCard({ service, active, flipped, onActivate }) {
         />
         <div className="relative flex h-full flex-col">
           <div className="flex items-start justify-between gap-4">
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-brand/15 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
-              <span className="font-mono text-[9.5px] font-medium tracking-[0.04em] text-brand-deep">
-                {service.seal}
-              </span>
+            <div className="grid h-[76px] w-[108px] shrink-0 place-items-center overflow-hidden rounded-2xl border border-brand/15 bg-white/90 px-2.5 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.98),0_6px_18px_rgba(20,45,35,0.06)]">
+              {service.logo ? (
+                <>
+                  <img
+                    src={service.logo}
+                    alt={`${service.seal} agency logo`}
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    className="max-h-[60px] max-w-full object-contain"
+                    onError={(event) => {
+                      event.currentTarget.hidden = true;
+                      event.currentTarget.nextElementSibling.hidden = false;
+                    }}
+                  />
+                  <span className="hidden font-mono text-[10px] font-semibold tracking-[0.04em] text-brand-deep">
+                    {service.seal}
+                  </span>
+                </>
+              ) : (
+                <span className="font-mono text-[10px] font-semibold tracking-[0.04em] text-brand-deep">{service.seal}</span>
+              )}
             </div>
             <span className="pt-1 text-right font-mono text-[9px] uppercase leading-relaxed tracking-[0.16em] text-slate/55">
               {service.kicker}
